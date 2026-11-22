@@ -21,7 +21,7 @@ authors:
   - family-names: Laan
     given-names: Maggi
     affiliation: "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
-version: "2.0.0"
+version: "2.1.0"
 date-released: 2026-11-22
 doi: 10.5281/zenodo.18752516
 repository-code: "https://github.com/Arfania-coder/legacy-P-isotopes"
