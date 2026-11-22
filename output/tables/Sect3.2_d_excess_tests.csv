@@ -1,0 +1,4 @@
+"comparison","statistic","p"
+"means (Welch t-test)",0.436132342839627,0.669897901076239
+"location (Wilcoxon rank-sum test)",133,0.626568871568948
+"spread (Brown-Forsythe test)",24.115197744904,2.99734518803804e-05

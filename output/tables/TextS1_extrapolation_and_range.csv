@@ -1,7 +1,7 @@
 "quantity","value"
 "equilibrium at 0.2 C minus equilibrium at 3.0 C (per mil)",0.541652715987311
 "mean slope of Eq. 1 between 0.2 and 3.0 C (per mil per K)",-0.193447398566897
-"sampling-month soil temperature, minimum (C)",-2.1
-"sampling-month soil temperature, maximum (C)",5.7
-"equilibrium over the sampling months, minimum (per mil)",10.6174796158397
-"equilibrium over the sampling months, maximum (per mil)",14.0852490022041
+"sampling-month soil temperature, minimum (C)",-2.11
+"sampling-month soil temperature, maximum (C)",5.68
+"equilibrium over the sampling months, minimum (per mil)",10.6212308466841
+"equilibrium over the sampling months, maximum (per mil)",14.0923761554068
