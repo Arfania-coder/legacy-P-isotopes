@@ -1,0 +1,42 @@
+{
+  "title": "Data and R code for: Oxygen isotopes in phosphate (\u03b418OP) reveal functional separation between labile and stable legacy phosphorus in soil",
+  "description": "<p>Data and R code for the article <em>Oxygen isotopes in phosphate (\u03b4<sup>18</sup>O<sub>P</sub>) reveal functional separation between labile and stable legacy phosphorus in soil</em> by Arfania, Kayler, Strawn, Brooks, Feber and Laan (<em>Biogeochemistry</em>).</p><p>The archive contains the oxygen isotope composition of phosphate (\u03b4<sup>18</sup>O<sub>P</sub>) and the phosphorus concentration of four sequentially extracted (Hedley) fractions in 12 composite soil samples from the R. J. Cook Agronomy Farm (Pullman, Washington, USA), sampled at top-slope and toe-slope positions under conventional tillage and no-till on three winter dates, together with the soil-water \u03b4<sup>18</sup>O and soil temperature used to calculate isotopic equilibrium.</p><p>The R scripts calculate the equilibrium values and the departure from equilibrium of every observation and reproduce Tables 1 and 2, Supplementary Tables S1 and S3, the statistics quoted in Sections 3.1 to 3.5 and Figure 3 of the article. Running <code>run_all.R</code> also writes a table that compares each quoted value with the script output.</p>",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Arfania, Hamed",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    },
+    {
+      "name": "Kayler, Zachary",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    },
+    {
+      "name": "Strawn, Daniel",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    },
+    {
+      "name": "Brooks, Erin",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    },
+    {
+      "name": "Feber, Gabriella",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    },
+    {
+      "name": "Laan, Maggi",
+      "affiliation": "Department of Soil and Water Systems, University of Idaho, Moscow, Idaho, United States"
+    }
+  ],
+  "keywords": [
+    "phosphate oxygen isotopes",
+    "legacy phosphorus",
+    "Hedley fractionation",
+    "isotopic equilibrium",
+    "toposequence",
+    "long-term agroecosystem research"
+  ]
+}

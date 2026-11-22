@@ -1,0 +1,11 @@
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+Rplots.pdf
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
