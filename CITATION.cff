@@ -35,6 +35,6 @@ keywords:
 abstract: >-
   Oxygen isotope composition of phosphate and phosphorus concentration of four sequentially
   extracted (Hedley) fractions in 12 composite soil samples from the R. J. Cook Agronomy Farm
-  (Pullman, Washington, USA), with the soil-water oxygen isotope composition and soil temperature
-  used to calculate isotopic equilibrium, and the R scripts that reproduce the tables, statistics
-  and Figure 3 of the associated article.
+  (Pullman, Washington, USA), with the isotopic composition of soil water and precipitation, the
+  soil temperature measured at sampling and the daily record of a nearby weather station, and
+  the R scripts that reproduce the tables, statistics and data figures of the associated article.
