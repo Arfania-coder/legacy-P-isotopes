@@ -1,6 +1,6 @@
 # Changes
 
-## 2.0.0
+## 2.0.0 (2026-11-22)
 
 Version for the revised manuscript, "Oxygen isotopes in phosphate (δ18OP) reveal functional
 separation between labile and stable legacy phosphorus in soil" (Biogeochemistry). It replaces

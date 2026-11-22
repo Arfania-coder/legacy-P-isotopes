@@ -90,7 +90,8 @@ with the value printed in the revised manuscript. `run_all.R` collects them in
 `output/tables/manuscript_values_check.csv`, with one row per value: where it is quoted, the
 value in the manuscript, the value calculated here formatted to the same number of decimals,
 whether the two agree, and a note where they do not. The run ends with a summary of this
-comparison.
+comparison. In this version 235 of the 263 values agree; for the other 28 the note gives the
+reason, and the value calculated here is the one that follows from the archived data and code.
 
 ## Methods in brief
 
