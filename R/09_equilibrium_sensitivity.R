@@ -1,10 +1,10 @@
 ################################################################################
-# 04_equilibrium_sensitivity.R
+# 09_equilibrium_sensitivity.R
 # Sensitivity of the equilibrium reference to the phosphate-water calibration and
 # to extrapolation below 3 degrees C (Section 2.5, Supplementary Text S1, Table S3).
 ################################################################################
 
-cat("\n== 04  Sensitivity of the equilibrium reference (Text S1, Table S3) ==\n")
+cat("\n== 09  Sensitivity of the equilibrium reference (Text S1, Table S3) ==\n")
 
 # ---- Equilibrium of every observation under each calibration ------------------
 calibrations <- c("Chang and Blake (2015), Eq. 1", names(LINEAR_CALIBRATIONS))
@@ -48,7 +48,7 @@ slope_0.2_to_3 <- -extrapolation / (3.0 - 0.2)
 # ---- Range over the sampling months -------------------------------------------
 # Full range of daily mean soil temperature at 5-20 cm (Dec 2023-Feb 2024; Table S2)
 # combined with the full range of measured soil-water d18O.
-winter <- soil_T[soil_T$period == "Sampling months combined (Dec 2023-Feb 2024)", ]
+winter <- soil_period("Sampling months combined (Dec 2023-Feb 2024)")
 stopifnot(nrow(winter) == 3)
 T_range <- c(min(winter$min_C), max(winter$max_C))
 w_range <- range(dat$d18Ow_soil_water)

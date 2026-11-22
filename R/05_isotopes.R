@@ -1,5 +1,5 @@
 ################################################################################
-# 03_isotopes.R
+# 05_isotopes.R
 # Oxygen isotope composition of the four fractions and their departure from
 # equilibrium: Table 2 and the statistics of Sections 3.3, 3.4 and 3.5.
 #
@@ -7,7 +7,7 @@
 # fitted to measured d18O_P and to the departure from equilibrium (offset).
 ################################################################################
 
-cat("\n== 03  Isotopic composition of the fractions (Table 2, Sections 3.3-3.5) ==\n")
+cat("\n== 05  Isotopic composition of the fractions (Table 2, Sections 3.3-3.5) ==\n")
 
 labile_rows <- dat$fraction %in% LABILE
 
@@ -56,15 +56,10 @@ tukey_pair <- function(a, b) {
 anova_HNO3 <- anova_type2(lm(d18Op ~ position + tillage + month, data = dat[dat$fraction == "HNO3", ]))
 
 # ---- Within-month equilibrium band (Figure 3) ----------------------------------
-# Range of daily mean soil temperature at 5-20 cm in each sampling month (Table S2),
-# combined with the soil-water d18O of each sample.
-month_period <- c(Dec = "December 2023", Jan = "January 2024", Feb = "February 2024")
-band_T <- t(vapply(month_period, function(p) {
-  r <- soil_T[soil_T$period == p, ]
-  c(T_min = min(r$min_C), T_max = max(r$max_C))
-}, numeric(2)))
-dat$band_low  <- eq_chang_blake(dat$d18Ow_soil_water, band_T[as.character(dat$month), "T_max"])
-dat$band_high <- eq_chang_blake(dat$d18Ow_soil_water, band_T[as.character(dat$month), "T_min"])
+# Range of the daily mean soil temperature at 5-20 cm in each sampling month
+# (02_station_climate.R), combined with the soil-water d18O of each sample.
+dat$band_low  <- eq_chang_blake(dat$d18Ow_soil_water, month_T_range[as.character(dat$month), "T_max"])
+dat$band_high <- eq_chang_blake(dat$d18Ow_soil_water, month_T_range[as.character(dat$month), "T_min"])
 
 # ---- Pairwise isotopic separation (Figure 5c) ----------------------------------
 # Root mean square of the paired per-sample differences in d18O_P between fractions.
@@ -147,7 +142,11 @@ caption <- list(
   c("d18O_P: tillage",   "F(1,40) = 0.7, p = 0.41",    fmt_test(term_row(anova_d18Op, "tillage"))),
   c("d18O_P: date",      "F(2,40) = 5.5, p = 0.008",   fmt_test(term_row(anova_d18Op, "month")))
 )
-for (x in caption) report("Table 2 caption / Sect. 3.4", x[1], x[2], x[3])
+precision_note <- paste("The manuscript value was calculated with d18O_P rounded to two decimals (Table S1);",
+                        "the data file has the precision of the laboratory data sheet.")
+for (x in caption) {
+  report("Table 2 caption / Sect. 3.4", x[1], x[2], x[3], if (identical(x[2], x[3])) "" else precision_note)
+}
 eta <- function(a, term, d = 2) fmt_num(a$eta2[a$term == term], d)
 report("Table 2 caption", "offset: eta2 of fraction", "0.85", eta(anova_offset, "fraction"))
 report("Table 2 caption", "d18O_P: share of variance explained by fraction", "0.87", eta(anova_d18Op, "fraction"))
@@ -171,7 +170,7 @@ report("Sect. 3.3", "HNO3-P observations below the within-month band", "12 of 12
        sprintf("%d of %d", sum(dat$d18Op[!labile_rows] < dat$band_low[!labile_rows]), sum(!labile_rows)))
 report("Sect. 3.2", "within-month equilibrium band (per mil)", "11.1 to 13.6",
        paste(fmt_num(min(dat$band_low)), "to", fmt_num(max(dat$band_high))),
-       note = "Lower limit is 11.04 with the monthly temperature ranges of Table S2; quoted as approximate.")
+       note = "Lower limit is 11.03 with the January range of the station record; quoted as approximate.")
 report("Sect. 3.3", "SD of d18O_P, labile fractions (per mil)", "1.1 to 1.3", fmt_range(by_fraction$d18Op_sd[1:3]))
 report("Sect. 3.3", "HNO3-P alone: position", "F(1,7) = 0.02, p = 0.90", fmt_test(term_row(anova_HNO3, "position")))
 report("Sect. 3.3", "HNO3-P alone: tillage",  "F(1,7) = 0.08, p = 0.78", fmt_test(term_row(anova_HNO3, "tillage")))
