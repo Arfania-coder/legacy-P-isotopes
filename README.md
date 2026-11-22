@@ -7,49 +7,55 @@ Data and R code for
 > phosphorus in soil. *Biogeochemistry* (in revision).
 
 The repository holds the measurements behind the paper and the R scripts that turn them into
-its tables, statistics and Figure 3. The measurements are the oxygen isotope composition of
+its tables, statistics and data figures. The measurements are the oxygen isotope composition of
 phosphate (δ<sup>18</sup>O<sub>P</sub>) and the P concentration of four sequentially extracted
 (Hedley) fractions in 12 composite soil samples from the R. J. Cook Agronomy Farm (Pullman,
-Washington, USA), with the soil-water δ<sup>18</sup>O and soil temperature needed to calculate
-isotopic equilibrium.
+Washington, USA), the isotopic composition of the soil water of each sample and of local
+precipitation, the soil temperature measured at sampling, and the daily record of a nearby
+weather station.
 
 ## Contents
 
 | Path | Content |
 | --- | --- |
 | `data/d18Op_hedley_fractions.csv` | 48 observations: 4 fractions × 2 landscape positions × 2 tillage systems × 3 sampling dates |
-| `data/soil_temperature_summary.csv` | Soil temperature at the Pullman 2 NW station by period and depth (Supplementary Table S2) |
+| `data/precipitation_isotopes.csv` | δ<sup>18</sup>O and δ<sup>2</sup>H of 22 precipitation samples |
+| `data/pullman_2nw_daily.csv` | Daily air temperature, precipitation and soil temperature at the Pullman 2 NW station, 2023–2024 |
 | `data/README.md` | Description of every column, with units and sources |
-| `R/00_setup.R` | Constants, equilibrium equations, statistics and formatting helpers |
+| `R/00_setup.R` | Constants, equilibrium equations, and helpers for statistics, formatting and figures |
 | `R/01_data.R` | Reads the data and calculates equilibrium δ<sup>18</sup>O<sub>P</sub> and the departure from it |
-| `R/02_fractionation.R` | P concentrations of the fractions: Table 1 and Section 3.1 |
-| `R/03_isotopes.R` | δ<sup>18</sup>O<sub>P</sub> of the fractions: Table 2 and Sections 3.3 to 3.5 |
-| `R/04_equilibrium_sensitivity.R` | Sensitivity of the equilibrium reference: Supplementary Text S1 and Table S3 |
-| `R/05_figure3.R` | Figure 3 |
+| `R/02_station_climate.R` | Soil-temperature summary of the station record; Figure S2 |
+| `R/03_fractionation.R` | P concentrations of the fractions |
+| `R/04_water_isotopes.R` | Precipitation and soil-water isotopes; Figure 2 |
+| `R/05_isotopes.R` | δ<sup>18</sup>O<sub>P</sub> of the fractions and its departure from equilibrium |
+| `R/06_figure3.R` | Figure 3 |
+| `R/07_pca.R` | Principal component analysis; Figure 4 |
+| `R/08_connectivity.R` | Isotopic connectivity among the fractions; Figure 5 |
+| `R/09_equilibrium_sensitivity.R` | Sensitivity of the equilibrium reference to the calibration |
+| `R/10_seasonal_equilibrium.R` | Equilibrium by season; Figure S1 |
 | `run_all.R` | Runs the scripts in order and compares the results with the values quoted in the paper |
-| `output/` | Tables and figure written by the scripts |
+| `output/` | Tables and figures written by the scripts |
 
 ## What the scripts reproduce
 
 | In the paper | Script | Output in `output/` |
 | --- | --- | --- |
 | Supplementary Table S1 (equilibrium and Δδ<sup>18</sup>O<sub>P</sub> of the 48 observations) | `01_data.R` | `tables/TableS1_d18Op_equilibrium.csv` |
-| Table 1 and Section 3.1 (factor means, ANOVA, position × tillage means, P stocks) | `02_fractionation.R` | `tables/Table1_*.csv`, `tables/Sect3.1_*.csv` |
-| Table 2 and Sections 3.3 and 3.4 (means, t-tests, ANOVA, η², interactions, Tukey comparisons) | `03_isotopes.R` | `tables/Table2_*.csv`, `tables/Sect3.4_*.csv` |
-| Pairwise isotopic separation between fractions (Section 3.5, Figure 5c) | `03_isotopes.R` | `tables/Figure5c_pairwise_separation.csv` |
-| Supplementary Text S1 and Table S3 (four phosphate–water calibrations, extrapolation below 3 °C) | `04_equilibrium_sensitivity.R` | `tables/TableS3_calibration_sensitivity.csv`, `tables/TextS1_extrapolation_and_range.csv` |
-| Figure 3 | `05_figure3.R` | `figures/Figure3_d18Op_vs_equilibrium.png` and `.pdf`, `tables/Figure3_equilibrium_bands.csv` |
+| Supplementary Table S2 and Figure S2; station values in Sections 2.1 and 2.5 | `02_station_climate.R` | `tables/TableS2_*.csv`, `figures/FigureS2_station_temperature.*` |
+| Table 1 and Section 3.1 (factor means, ANOVA, position × tillage means, P stocks) | `03_fractionation.R` | `tables/Table1_*.csv`, `tables/Sect3.1_*.csv` |
+| Figure 2 and Section 3.2 (meteoric water line, soil-water line, deuterium excess) | `04_water_isotopes.R` | `figures/Figure2_water_isotopes.*`, `tables/Figure2_*.csv`, `tables/Sect3.2_*.csv` |
+| Table 2 and Sections 3.3 and 3.4 (means, t-tests, ANOVA, η², interactions, Tukey comparisons) | `05_isotopes.R` | `tables/Table2_*.csv`, `tables/Sect3.4_*.csv` |
+| Figure 3 | `05_isotopes.R`, `06_figure3.R` | `figures/Figure3_d18Op_vs_equilibrium.*`, `tables/Figure3_equilibrium_bands.csv` |
+| Figure 4 and the principal component analysis of Section 3.4 | `07_pca.R` | `figures/Figure4_pca.*`, `tables/Figure4_*.csv`, `tables/Sect3.4_pca_*.csv` |
+| Figure 5 and Section 3.5 (isotopic separation and connectivity) | `05_isotopes.R`, `08_connectivity.R` | `figures/Figure5_connectivity.*`, `tables/Figure5*.csv` |
+| Supplementary Text S1 and Table S3 (four phosphate–water calibrations, extrapolation below 3 °C) | `09_equilibrium_sensitivity.R` | `tables/TableS3_calibration_sensitivity.csv`, `tables/TextS1_extrapolation_and_range.csv` |
+| Supplementary Text S2 and Figure S1 (equilibrium by season) | `10_seasonal_equilibrium.R` | `figures/FigureS1_seasonal_equilibrium.*`, `tables/FigureS1_seasonal_equilibrium.csv` |
 
-Not part of this version: the principal component analysis (Figure 4), the Bayesian
-isotopic-connectivity model (Figure 5a, b and d), the water-isotope figure (Figure 2) and the
-supplementary figures (Figures S1 and S2). They will be added together with the data they
-need: the soil-water δ<sup>2</sup>H values, the precipitation isotope data and the daily
-station record.
+Figure 1 (study site) and Figure 6 (conceptual diagram) are not generated by code.
 
 ## Running the code
 
-Requirements: R 4.1 or later with the packages `emmeans` and `ggplot2` (3.4.0 or later). The R
-and package versions used for the archived outputs are recorded in `output/sessionInfo.txt`.
+Requirements: R 4.1 or later with the packages `emmeans` and `ggplot2` (3.4.0 or later).
 
 ```r
 install.packages(c("emmeans", "ggplot2"))
@@ -67,17 +73,25 @@ or in R or RStudio (open `legacy-P-isotopes.Rproj`, or set the working directory
 source("run_all.R")
 ```
 
-The run takes a few seconds. It writes the tables to `output/tables/`, Figure 3 to
-`output/figures/` and the R session information to `output/sessionInfo.txt`.
+The run takes about 15 seconds. It writes the tables to `output/tables/`, the figures to
+`output/figures/` (PNG at 600 dpi and PDF, 174 mm wide) and the R session information to
+`output/sessionInfo.txt`. The archived outputs were produced with R 4.3.3, emmeans 1.10.0 and
+ggplot2 3.4.4. A new run on the same system reproduces the tables and the PNG files exactly;
+the PDF files record the time at which they were written and therefore differ between runs.
+
+The connectivity analysis draws random numbers. The generator and its seed are set in
+`R/08_connectivity.R`, so the 4000 draws are the same in every run
+(`output/tables/Figure5_connectivity_draws.csv`).
 
 ## Checking the paper against the code
 
-Each statistic quoted in the paper that these scripts cover is registered in the script that
-calculates it, together with the value printed in the paper. `run_all.R` collects them (175
-values) in `output/tables/manuscript_values_check.csv`, with one row per value: where it is
-quoted, the value in the paper, the value calculated here formatted to the same number of
-decimals, whether the two agree, and a note where they do not. The run ends with a summary of
-this comparison.
+Each statistic quoted in the paper is registered in the script that calculates it, together
+with the value printed in the revised manuscript. `run_all.R` collects them in
+`output/tables/manuscript_values_check.csv`, with one row per value: where it is quoted, the
+value in the manuscript, the value calculated here formatted to the same number of decimals,
+whether the two agree, and a note where they do not. The run ends with a summary of this
+comparison. In this version 235 of the 263 values agree; for the other 28 the note gives the
+reason, and the value calculated here is the one that follows from the archived data and code.
 
 ## Methods in brief
 
@@ -97,14 +111,35 @@ this comparison.
   with Tukey-adjusted contrasts of estimated marginal means (`emmeans`).
 - **Equilibrium bands of Figure 3.** For each composite sample, equilibrium is evaluated over
   the range of daily mean soil temperature at 5 to 20 cm in its sampling month.
-- **Sensitivity.** All 48 observations are recalculated with the calibrations of Longinelli and
-  Nuti (1973), Lécuyer et al. (2013) and Pucéat et al. (2010).
+- **Water isotopes.** The local meteoric water line is the least-squares line through the
+  precipitation samples, without the samples whose deuterium excess
+  (δ<sup>2</sup>H − 8 δ<sup>18</sup>O) lies more than 1.5 interquartile ranges outside the
+  quartiles (2 of 22). The soil-water line is fitted to the 12 composite samples.
+- **Principal component analysis.** Six standardized variables (measured and equilibrium
+  δ<sup>18</sup>O<sub>P</sub>, Δδ<sup>18</sup>O<sub>P</sub>, soil-water δ<sup>18</sup>O and
+  δ<sup>2</sup>H, soil temperature) for the 48 observations (`prcomp`). The share of each
+  design factor in the variance of the scores is its one-way sum of squares divided by the
+  total. Ellipses in Figure 4 contain 95% of a bivariate normal distribution fitted to each
+  group.
+- **Isotopic separation and connectivity.** The separation of two fractions is the root mean
+  square of their paired differences in δ<sup>18</sup>O<sub>P</sub> over the 12 composite
+  samples. For the connectivity index, the samples are resampled with replacement 4000 times;
+  in each resample every pathway between two fractions receives a value drawn from a Beta
+  distribution chosen by the separation of the pair (below 2‰: Beta(5, 2); 2 to below 4‰:
+  Beta(3, 4); 4‰ or more: Beta(1, 8)), and the three values leaving a fraction are divided by
+  their sum. Pathways are summarized by the mean and the 2.5th and 97.5th percentiles of the
+  draws.
+- **Sensitivity to the calibration.** All 48 observations are recalculated with the
+  calibrations of Longinelli and Nuti (1973), Lécuyer et al. (2013) and Pucéat et al. (2010).
+- **Equilibrium by season.** For winter, the dormant season, spring and the growing season,
+  equilibrium is calculated from the δ<sup>18</sup>O of the precipitation samples collected in
+  the months of the season and the daily soil temperature at 20 cm in those months (2023 and
+  2024 pooled): at the two means for the point of Figure S1, and at opposite quartiles of the
+  two variables for the ends of its bar.
 
 ## Data
 
-The data files are described in [`data/README.md`](data/README.md). The δ<sup>18</sup>O<sub>P</sub>,
-soil-water δ<sup>18</sup>O and soil-temperature values are those of Supplementary Table S1, the
-concentrations those of Table 1, and the station summary that of Supplementary Table S2.
+The data files are described in [`data/README.md`](data/README.md).
 
 ## Citation
 

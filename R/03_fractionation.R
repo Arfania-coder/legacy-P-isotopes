@@ -1,5 +1,5 @@
 ################################################################################
-# 02_fractionation.R
+# 03_fractionation.R
 # Sequential (Hedley) P fractionation: Table 1 and the statistics of Section 3.1.
 #
 # Responses: concentration of each fraction, the sum of the three labile
@@ -8,7 +8,7 @@
 # position x tillage interaction is tested by adding it to that model.
 ################################################################################
 
-cat("\n== 02  Phosphorus fractionation (Table 1, Section 3.1) ==\n")
+cat("\n== 03  Phosphorus fractionation (Table 1, Section 3.1) ==\n")
 
 responses <- c(P_H2O = "H2O-P", P_NaHCO3 = "NaHCO3-P", P_NaOH = "NaOH-P",
                P_HNO3 = "HNO3-P", P_labile = "Labile sum", P_total = "Total P")
